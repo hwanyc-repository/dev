@@ -192,26 +192,26 @@
 ┌─────────────────────────────────────────────┐
 │        Android App (Push Catcher)           │
 ├─────────────────────────────────────────────┤
-│  📱 UI Layer (Jetpack Compose)              │
+│  UI Layer (Jetpack Compose)                 │
 │     - MVVM Pattern                          │
 │     - Material Design 3                     │
 │     - StateFlow                             │
-│              ↓                               │
-│  🔧 Business Layer                          │
+│              ↓                              │
+│  Business Layer                             │
 │     - ApiAuthManager                        │
 │     - ApiRepository                         │
-│              ↓                               │
-│  🌐 Network Layer                           │
+│              ↓                              │
+│  Network Layer                              │
 │     - Ktor HttpClient                       │
 │     - API Services                          │
-│              ↓                               │
-│  ⚙️ Service Layer                           │
+│              ↓                              │
+│  Service Layer                              │
 │     - PushListeningService                  │
 │     - PushCatcherService (SMS)              │
 └─────────────────────────────────────────────┘
                 ↓ HTTPS
 ┌─────────────────────────────────────────────┐
-│  🖥️ Backend API (Express.js)                │
+│   Backend API (Express.js)                  │
 │     - RESTful API                           │
 │     - TOTP Authentication                   │
 │     - Card Management                       │
@@ -219,7 +219,7 @@
 └─────────────────────────────────────────────┘
                 ↓
 ┌─────────────────────────────────────────────┐
-│  🗄️ Database (Supabase/PostgreSQL)         │
+│  Database (Supabase/PostgreSQL)             │
 └─────────────────────────────────────────────┘
             </div>
 
