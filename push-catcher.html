@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Push Catcher - 똑똑한 카드 실적 관리 앱</title>
+    <meta name="description" content="카드사 푸시 알림을 자동으로 캐치해서 실적을 관리하는 Android 앱">
+    <link rel="stylesheet" href="css/push-catcher.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">← Back to Portfolio</a>
+            <ul>
+                <li><a href="#features">기능</a></li>
+                <li><a href="#tech">기술스택</a></li>
+                <li><a href="#architecture">아키텍처</a></li>
+                <li><a href="#contact">연락처</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Push Catcher</h1>
+            <p class="subtitle">똑똑한 카드 실적 관리 앱</p>
+            <p class="description">
+                카드사 푸시 알림을 자동으로 캐치해서 거래 내역을 추적하고,<br>
+                실적을 한눈에 관리할 수 있는 Android 앱입니다
+            </p>
+            <div class="btn-group">
+                <a href="https://push-catcher-frontend.vercel.app/" class="btn btn-primary" target="_blank">Live Demo</a>
+                <a href="#features" class="btn btn-secondary">더 알아보기</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- Why Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">왜 Push Catcher인가?</h2>
+            <div class="stats-grid">
+                <div class="stat-card glass-card">
+                    <div class="stat-number">자동</div>
+                    <div class="stat-label">푸시 알림 자동 캐치</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-number">실시간</div>
+                    <div class="stat-label">실적 현황 추적</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-number">간편</div>
+                    <div class="stat-label">SMS 자동 전송</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-number">안전</div>
+                    <div class="stat-label">TOTP 기반 인증</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">주요 기능</h2>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>푸시 알림 캐치</h3>
+                    <p>카드사 앱의 푸시 알림을 실시간으로 감지하고, 자동으로 거래 정보를 파싱해서 기록합니다</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>카드 실적 관리</h3>
+                    <p>카드별로 목표 금액을 설정하고, 현재 달성률을 한눈에 확인할 수 있어요</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">📨</div>
+                    <h3>SMS 자동 전송</h3>
+                    <p>거래 알림을 특정 번호로 자동 전송하고, 필터 설정으로 원하는 알림만 선택할 수 있습니다</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>거래 내역 관리</h3>
+                    <p>카드별, 날짜별로 거래 내역을 필터링하고, 상세한 통계를 확인할 수 있어요</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>안전한 인증</h3>
+                    <p>TOTP 기반 2단계 인증과 신뢰된 기기 관리로 데이터를 안전하게 보호합니다</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>상세한 분석</h3>
+                    <p>기간별 거래 통계와 달성률을 확인하고, 소비 패턴을 분석할 수 있습니다</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works" style="background: rgba(0,0,0,0.1);">
+        <div class="container">
+            <h2 class="section-title">이렇게 동작해요</h2>
+            <div class="features-grid">
+                <div class="glass-card">
+                    <h3 style="color: white; margin-bottom: 1rem;">1️⃣ 카드 등록</h3>
+                    <ul class="feature-list">
+                        <li>카드사, 카드명, 목표 금액 설정</li>
+                        <li>카드별로 맞춤 설정 가능</li>
+                        <li>수동으로 실적 추가도 가능</li>
+                    </ul>
+                </div>
+                <div class="glass-card">
+                    <h3 style="color: white; margin-bottom: 1rem;">2️⃣ 자동 추적</h3>
+                    <ul class="feature-list">
+                        <li>카드사 푸시 알림을 실시간 감지</li>
+                        <li>거래 정보 자동 파싱 및 저장</li>
+                        <li>배터리 최적화로 효율적 동작</li>
+                    </ul>
+                </div>
+                <div class="glass-card">
+                    <h3 style="color: white; margin-bottom: 1rem;">3️⃣ 실적 확인</h3>
+                    <ul class="feature-list">
+                        <li>카드별 실적 현황 한눈에 확인</li>
+                        <li>목표 달성률 실시간 업데이트</li>
+                        <li>거래 내역 필터링 및 통계</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech">
+        <div class="container">
+            <h2 class="section-title">기술 스택</h2>
+
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">Android App</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">Kotlin</span>
+                    <span class="tech-badge">Jetpack Compose</span>
+                    <span class="tech-badge">Material Design 3</span>
+                    <span class="tech-badge">MVVM</span>
+                    <span class="tech-badge">Coroutines</span>
+                    <span class="tech-badge">StateFlow</span>
+                    <span class="tech-badge">Ktor Client</span>
+                    <span class="tech-badge">NotificationListenerService</span>
+                    <span class="tech-badge">WorkManager</span>
+                    <span class="tech-badge">DataStore</span>
+                    <span class="tech-badge">Coil</span>
+                    <span class="tech-badge">Lottie</span>
+                </div>
+            </div>
+
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">Backend API</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">Node.js</span>
+                    <span class="tech-badge">Express.js</span>
+                    <span class="tech-badge">Supabase</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                    <span class="tech-badge">RESTful API</span>
+                    <span class="tech-badge">TOTP Auth</span>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">Web CMS</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Vite</span>
+                    <span class="tech-badge">Tailwind CSS</span>
+                    <span class="tech-badge">React Router</span>
+                    <span class="tech-badge">Chart.js</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" style="background: rgba(0,0,0,0.1);">
+        <div class="container">
+            <h2 class="section-title">시스템 아키텍처</h2>
+            <div class="architecture-box">
+┌─────────────────────────────────────────────┐
+│        Android App (Push Catcher)           │
+├─────────────────────────────────────────────┤
+│  📱 UI Layer (Jetpack Compose)              │
+│     - MVVM Pattern                          │
+│     - Material Design 3                     │
+│     - StateFlow                             │
+│              ↓                               │
+│  🔧 Business Layer                          │
+│     - ApiAuthManager                        │
+│     - ApiRepository                         │
+│              ↓                               │
+│  🌐 Network Layer                           │
+│     - Ktor HttpClient                       │
+│     - API Services                          │
+│              ↓                               │
+│  ⚙️ Service Layer                           │
+│     - PushListeningService                  │
+│     - PushCatcherService (SMS)              │
+└─────────────────────────────────────────────┘
+                ↓ HTTPS
+┌─────────────────────────────────────────────┐
+│  🖥️ Backend API (Express.js)                │
+│     - RESTful API                           │
+│     - TOTP Authentication                   │
+│     - Card Management                       │
+│     - Transaction Tracking                  │
+└─────────────────────────────────────────────┘
+                ↓
+┌─────────────────────────────────────────────┐
+│  🗄️ Database (Supabase/PostgreSQL)         │
+└─────────────────────────────────────────────┘
+            </div>
+
+            <div class="features-grid" style="margin-top: 3rem;">
+                <div class="glass-card">
+                    <h3 style="color: white; margin-bottom: 1rem;">UI 아키텍처</h3>
+                    <ul class="feature-list">
+                        <li>Jetpack Compose로 선언적 UI</li>
+                        <li>MVVM 패턴으로 깔끔한 구조</li>
+                        <li>StateFlow로 반응형 데이터</li>
+                        <li>Material Design 3 적용</li>
+                    </ul>
+                </div>
+                <div class="glass-card">
+                    <h3 style="color: white; margin-bottom: 1rem;">서비스 아키텍처</h3>
+                    <ul class="feature-list">
+                        <li>NotificationListener로 푸시 감지</li>
+                        <li>자동 파싱 및 데이터 전송</li>
+                        <li>SMS 자동 전송 서비스</li>
+                        <li>백그라운드 안정성 보장</li>
+                    </ul>
+                </div>
+                <div class="glass-card">
+                    <h3 style="color: white; margin-bottom: 1rem;">인증 시스템</h3>
+                    <ul class="feature-list">
+                        <li>이메일 화이트리스트 관리</li>
+                        <li>TOTP 2단계 인증</li>
+                        <li>신뢰된 기기 관리</li>
+                        <li>Magic Link 로그인</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Detail -->
+    <section id="details">
+        <div class="container">
+            <h2 class="section-title">핵심 기능 상세</h2>
+
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">🔔 푸시 알림 캐치</h3>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem; line-height: 1.8;">
+                    Android의 NotificationListenerService를 활용해서 카드사 앱의 푸시 알림을 실시간으로 감지합니다.
+                    알림이 오면 자동으로 파싱해서 카드사명, 카드명, 금액, 가맹점 정보를 추출하고, 백엔드 API로 전송해서 저장합니다.
+                </p>
+                <ul class="feature-list">
+                    <li>배터리 최적화를 고려한 효율적인 리스너 구현</li>
+                    <li>다양한 카드사 알림 포맷 지원 (정규식 기반)</li>
+                    <li>오프라인 시 로컬 저장 후 동기화</li>
+                    <li>중복 알림 자동 필터링</li>
+                </ul>
+            </div>
+
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">💳 카드 실적 관리</h3>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem; line-height: 1.8;">
+                    카드별로 목표 금액을 설정하면, 실시간으로 현재 달성률을 확인할 수 있습니다.
+                    푸시 알림으로 캐치된 거래뿐만 아니라, 수동으로도 실적을 추가할 수 있어요.
+                </p>
+                <ul class="feature-list">
+                    <li>현재 금액 / 목표 금액 한눈에 확인</li>
+                    <li>달성률 프로그레스 바로 시각화</li>
+                    <li>거래 횟수 및 평균 거래 금액 통계</li>
+                    <li>월별 자동 리셋 및 히스토리 관리</li>
+                </ul>
+            </div>
+
+            <div class="glass-card" style="margin-bottom: 2rem;">
+                <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">📨 SMS 자동 전송</h3>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem; line-height: 1.8;">
+                    카드 거래 알림을 자동으로 특정 번호로 SMS 전송할 수 있습니다.
+                    특정 앱만 선택해서 전송하거나, 전체 알림을 전송할 수 있고, 전송 내역도 확인 가능합니다.
+                </p>
+                <ul class="feature-list">
+                    <li>필터 설정으로 특정 앱만 선택 전송</li>
+                    <li>전송 실패 시 자동 재전송</li>
+                    <li>전송 내역 확인 및 관리</li>
+                    <li>포그라운드 서비스로 안정적 전송</li>
+                </ul>
+            </div>
+
+            <div class="glass-card">
+                <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">🔐 TOTP 인증 시스템</h3>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem; line-height: 1.8;">
+                    구글 Authenticator 방식의 TOTP 2단계 인증으로 계정을 안전하게 보호합니다.
+                    신뢰된 기기로 등록하면 30일간 OTP 입력 없이 로그인할 수 있어요.
+                </p>
+                <ul class="feature-list">
+                    <li>이메일 화이트리스트로 가입 제한</li>
+                    <li>TOTP 6자리 코드 인증</li>
+                    <li>신뢰된 기기 관리 (30일 유효)</li>
+                    <li>Magic Link를 통한 이메일 인증</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: rgba(0,0,0,0.1);">
+        <div class="container">
+            <h2 class="section-title">연락처</h2>
+            <div class="contact-info glass-card" style="max-width: 600px; margin: 0 auto;">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                    프로젝트에 대해 궁금한 점이 있거나 문의 사항이 있으시면 언제든 연락주세요
+                </p>
+                <p style="margin-bottom: 1rem; font-size: 1.1rem;">
+                    <strong>GitHub:</strong> <a href="https://github.com/hwanyc-repository" target="_blank">github.com/hwanyc-repository</a>
+                </p>
+                <p style="margin-bottom: 1rem; font-size: 1.1rem;">
+                    <strong>Repository:</strong> <span style="color: rgba(255,255,255,0.7);">Private Repository</span>
+                </p>
+                <p style="margin-top: 2rem; color: rgba(255,255,255,0.8);">
+                    Made with ❤️ by hwanyc
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Push Catcher by hwanyc. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.7);">Hosted on Cloudflare Pages</p>
+    </footer>
+
+    <script src="js/push-catcher.js"></script>
+
+</body>
+</html>
