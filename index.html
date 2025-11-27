@@ -3,441 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Push Catcher - 똑똑한 카드 실적 관리 앱</title>
-    <meta name="description" content="카드사 푸시 알림을 자동으로 캐치해서 실적을 관리하는 Android 앱">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #ec4899;
-            --accent: #14b8a6;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            background-attachment: fixed;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        nav a:hover {
-            opacity: 0.8;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            color: white;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 20px rgba(0,0,0,0.2);
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-        }
-
-        .hero .description {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            font-size: 1.1rem;
-        }
-
-        .btn-primary {
-            background: white;
-            color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid white;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Section */
-        section {
-            padding: 5rem 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 3rem;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-        }
-
-        /* Glass Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 45px rgba(0,0,0,0.2);
-        }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            text-align: center;
-            color: white;
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-        }
-
-        /* Tech Stack */
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .tech-badge {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .tech-badge:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-
-        /* Architecture */
-        .architecture-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            color: white;
-            margin-top: 2rem;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
-            white-space: pre;
-            line-height: 1.5;
-        }
-
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-card {
-            text-align: center;
-            color: white;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Screenshots */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .screenshot-placeholder {
-            aspect-ratio: 9/16;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-        }
-
-        .screenshot-placeholder:hover {
-            transform: scale(1.05);
-        }
-
-        /* Contact */
-        .contact-info {
-            text-align: center;
-            color: white;
-            margin-top: 2rem;
-        }
-
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-            transition: border-color 0.3s;
-        }
-
-        .contact-info a:hover {
-            border-color: white;
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            nav ul {
-                display: none;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .features-grid,
-            .screenshots-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            color: white;
-            font-size: 2rem;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-20px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-
-        /* List styling */
-        .feature-list {
-            list-style: none;
-            color: rgba(255, 255, 255, 0.9);
-            text-align: left;
-        }
-
-        .feature-list li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .feature-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-    </style>
+    <title>hwanyc - Full-stack & Android Developer</title>
+    <meta name="description" content="Full-stack Developer 경력 7년차, Android 개발자 포트폴리오">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <a href="#" class="logo">📱 Push Catcher</a>
+            <a href="#" class="logo">hwanyc</a>
             <ul>
-                <li><a href="#features">기능</a></li>
-                <li><a href="#tech">기술스택</a></li>
-                <li><a href="#architecture">아키텍처</a></li>
-                <li><a href="#contact">연락처</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -445,382 +25,251 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Push Catcher</h1>
-            <p class="subtitle">똑똑한 카드 실적 관리 앱</p>
+            <h1>hwanyc</h1>
+            <p class="subtitle">Full-stack & Android Developer</p>
             <p class="description">
-                카드사 푸시 알림을 자동으로 캐치해서 거래 내역을 추적하고,<br>
-                실적을 한눈에 관리할 수 있는 Android 앱입니다
+                PHP 5년, Python 2년 경력을 바탕으로<br>
+                현재는 Android(Kotlin)와 모던 웹 개발에 집중하고 있습니다<br>
+                견고한 백엔드 경험을 살려 안정적인 풀스택 서비스를 설계합니다
             </p>
-            <div class="btn-group">
-                <a href="https://github.com/hwanyc-repository/Push_catcher" class="btn btn-primary" target="_blank">GitHub 보러가기</a>
-                <a href="#features" class="btn btn-secondary">더 알아보기</a>
-            </div>
         </div>
         <div class="scroll-indicator">↓</div>
     </section>
 
-    <!-- Why Section -->
-    <section id="about">
+    <!-- Skills Section -->
+    <section id="skills">
         <div class="container">
-            <h2 class="section-title">왜 Push Catcher인가?</h2>
-            <div class="stats-grid">
-                <div class="stat-card glass-card">
-                    <div class="stat-number">자동</div>
-                    <div class="stat-label">푸시 알림 자동 캐치</div>
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <!-- Frontend -->
+                <div class="glass-card skill-category">
+                    <h3>
+                        <span class="icon">🎨</span>
+                        Frontend
+                    </h3>
+                    <div class="skill-item">
+                        <div class="skill-name">Modern Web Development</div>
+                        <div class="skill-description">
+                            React 기반 SPA 개발과 Vite를 활용한 빠른 빌드 환경 구축 경험
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Vite</span>
+                            <span class="skill-tag">React Router</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Styling & UI Framework</div>
+                        <div class="skill-description">
+                            Tailwind CSS로 유틸리티 퍼스트 방식의 반응형 디자인 구현
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Tailwind CSS</span>
+                            <span class="skill-tag">Responsive Design</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Data Visualization</div>
+                        <div class="skill-description">
+                            Chart.js를 활용한 대시보드 및 통계 데이터 시각화
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Chart.js</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-card glass-card">
-                    <div class="stat-number">실시간</div>
-                    <div class="stat-label">실적 현황 추적</div>
+
+                <!-- Backend -->
+                <div class="glass-card skill-category">
+                    <h3>
+                        <span class="icon">⚙️</span>
+                        Backend
+                    </h3>
+                    <div class="skill-item">
+                        <div class="skill-name">Node.js & Express.js</div>
+                        <div class="skill-description">
+                            RESTful API 서버 구축과 미들웨어 기반 아키텍처 설계
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express.js</span>
+                            <span class="skill-tag">RESTful API</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Database & BaaS</div>
+                        <div class="skill-description">
+                            Supabase와 PostgreSQL을 활용한 데이터베이스 설계 및 관리
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Supabase</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Oracle</span>
+                            <span class="skill-tag">MySQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Security & Authentication</div>
+                        <div class="skill-description">
+                            TOTP 기반 2단계 인증 시스템 구현과 JWT 토큰 관리
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">TOTP Auth</span>
+                            <span class="skill-tag">JWT</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Legacy Backend Experience</div>
+                        <div class="skill-description">
+                            PHP 5년, Python 2년 경력으로 안정적인 백엔드 서비스 운영
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PHP (5년)</span>
+                            <span class="skill-tag">Python (2년)</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-card glass-card">
-                    <div class="stat-number">간편</div>
-                    <div class="stat-label">SMS 자동 전송</div>
-                </div>
-                <div class="stat-card glass-card">
-                    <div class="stat-number">안전</div>
-                    <div class="stat-label">TOTP 기반 인증</div>
+
+                <!-- Android -->
+                <div class="glass-card skill-category">
+                    <h3>
+                        <span class="icon">📱</span>
+                        Android
+                    </h3>
+                    <div class="skill-item">
+                        <div class="skill-name">Kotlin & Modern UI</div>
+                        <div class="skill-description">
+                            Jetpack Compose를 활용한 선언적 UI 개발과 Material Design 3 적용
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Kotlin</span>
+                            <span class="skill-tag">Jetpack Compose</span>
+                            <span class="skill-tag">Material Design 3</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Legacy UI Experience</div>
+                        <div class="skill-description">
+                            XML View 기반 레거시 UI 개발 경험으로 Compose와 XML 모두 능숙하게 다룸
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">XML View (Legacy)</span>
+                            <span class="skill-tag">ConstraintLayout</span>
+                            <span class="skill-tag">RecyclerView</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Architecture & Patterns</div>
+                        <div class="skill-description">
+                            MVVM 아키텍처 패턴과 클린 아키텍처 기반 코드 설계
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MVVM</span>
+                            <span class="skill-tag">Clean Architecture</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Async & Reactive Programming</div>
+                        <div class="skill-description">
+                            Coroutines와 Flow를 활용한 비동기 처리와 반응형 프로그래밍
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Coroutines</span>
+                            <span class="skill-tag">StateFlow</span>
+                            <span class="skill-tag">Flow</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Networking & Local Storage</div>
+                        <div class="skill-description">
+                            Ktor Client로 네트워킹 구현, Room과 DataStore로 로컬 데이터 관리
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Ktor Client</span>
+                            <span class="skill-tag">Room Database</span>
+                            <span class="skill-tag">DataStore</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Android Services</div>
+                        <div class="skill-description">
+                            NotificationListenerService와 WorkManager를 활용한 백그라운드 작업 처리
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">NotificationListenerService</span>
+                            <span class="skill-tag">WorkManager</span>
+                            <span class="skill-tag">Foreground Service</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features">
+    <!-- Projects Section -->
+    <section id="projects">
         <div class="container">
-            <h2 class="section-title">주요 기능</h2>
-            <div class="features-grid">
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">🔔</div>
-                    <h3>푸시 알림 캐치</h3>
-                    <p>카드사 앱의 푸시 알림을 실시간으로 감지하고, 자동으로 거래 정보를 파싱해서 기록합니다</p>
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <!-- Push Catcher Project -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>
+                            <span class="icon">📱</span>
+                            Push Catcher
+                        </h3>
+                        <p class="project-type">Android • Backend • Web</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            카드사 푸시 알림을 자동으로 캐치해서 거래 내역을 추적하고,
+                            실적을 한눈에 관리할 수 있는 Android 앱입니다.
+                            백엔드 API와 Web CMS까지 풀스택으로 개발했습니다.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Kotlin</span>
+                            <span class="tech-badge">Compose</span>
+                            <span class="tech-badge">MVVM</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">Express</span>
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">Supabase</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://push-catcher-frontend.vercel.app/" class="btn btn-primary" target="_blank" onclick="event.stopPropagation()">Live Demo</a>
+                            <a href="push-catcher.html" class="btn btn-secondary" data-detail-link>자세히 보기</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">💳</div>
-                    <h3>카드 실적 관리</h3>
-                    <p>카드별로 목표 금액을 설정하고, 현재 달성률을 한눈에 확인할 수 있어요</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">📨</div>
-                    <h3>SMS 자동 전송</h3>
-                    <p>거래 알림을 특정 번호로 자동 전송하고, 필터 설정으로 원하는 알림만 선택할 수 있습니다</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>거래 내역 관리</h3>
-                    <p>카드별, 날짜별로 거래 내역을 필터링하고, 상세한 통계를 확인할 수 있어요</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">🔐</div>
-                    <h3>안전한 인증</h3>
-                    <p>TOTP 기반 2단계 인증과 신뢰된 기기 관리로 데이터를 안전하게 보호합니다</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <div class="feature-icon">📈</div>
-                    <h3>상세한 분석</h3>
-                    <p>기간별 거래 통계와 달성률을 확인하고, 소비 패턴을 분석할 수 있습니다</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- How it works -->
-    <section id="how-it-works" style="background: rgba(0,0,0,0.1);">
-        <div class="container">
-            <h2 class="section-title">이렇게 동작해요</h2>
-            <div class="features-grid">
-                <div class="glass-card">
-                    <h3 style="color: white; margin-bottom: 1rem;">1️⃣ 카드 등록</h3>
-                    <ul class="feature-list">
-                        <li>카드사, 카드명, 목표 금액 설정</li>
-                        <li>카드별로 맞춤 설정 가능</li>
-                        <li>수동으로 실적 추가도 가능</li>
-                    </ul>
-                </div>
-                <div class="glass-card">
-                    <h3 style="color: white; margin-bottom: 1rem;">2️⃣ 자동 추적</h3>
-                    <ul class="feature-list">
-                        <li>카드사 푸시 알림을 실시간 감지</li>
-                        <li>거래 정보 자동 파싱 및 저장</li>
-                        <li>배터리 최적화로 효율적 동작</li>
-                    </ul>
-                </div>
-                <div class="glass-card">
-                    <h3 style="color: white; margin-bottom: 1rem;">3️⃣ 실적 확인</h3>
-                    <ul class="feature-list">
-                        <li>카드별 실적 현황 한눈에 확인</li>
-                        <li>목표 달성률 실시간 업데이트</li>
-                        <li>거래 내역 필터링 및 통계</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack Section -->
-    <section id="tech">
-        <div class="container">
-            <h2 class="section-title">기술 스택</h2>
-
-            <div class="glass-card" style="margin-bottom: 2rem;">
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">Android App</h3>
-                <div class="tech-stack">
-                    <span class="tech-badge">Kotlin</span>
-                    <span class="tech-badge">Jetpack Compose</span>
-                    <span class="tech-badge">Material Design 3</span>
-                    <span class="tech-badge">MVVM</span>
-                    <span class="tech-badge">Coroutines</span>
-                    <span class="tech-badge">StateFlow</span>
-                    <span class="tech-badge">Ktor Client</span>
-                    <span class="tech-badge">NotificationListenerService</span>
-                    <span class="tech-badge">WorkManager</span>
-                    <span class="tech-badge">DataStore</span>
-                    <span class="tech-badge">Coil</span>
-                    <span class="tech-badge">Lottie</span>
-                </div>
-            </div>
-
-            <div class="glass-card" style="margin-bottom: 2rem;">
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">Backend API</h3>
-                <div class="tech-stack">
-                    <span class="tech-badge">Node.js</span>
-                    <span class="tech-badge">Express.js</span>
-                    <span class="tech-badge">Supabase</span>
-                    <span class="tech-badge">PostgreSQL</span>
-                    <span class="tech-badge">RESTful API</span>
-                    <span class="tech-badge">TOTP Auth</span>
-                </div>
-            </div>
-
-            <div class="glass-card">
-                <h3 style="color: white; margin-bottom: 1rem; font-size: 1.5rem;">Web CMS</h3>
-                <div class="tech-stack">
-                    <span class="tech-badge">React</span>
-                    <span class="tech-badge">Vite</span>
-                    <span class="tech-badge">Tailwind CSS</span>
-                    <span class="tech-badge">React Router</span>
-                    <span class="tech-badge">Chart.js</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Architecture Section -->
-    <section id="architecture" style="background: rgba(0,0,0,0.1);">
-        <div class="container">
-            <h2 class="section-title">시스템 아키텍처</h2>
-            <div class="architecture-box">
-┌─────────────────────────────────────────────┐
-│        Android App (Push Catcher)           │
-├─────────────────────────────────────────────┤
-│  📱 UI Layer (Jetpack Compose)              │
-│     - MVVM Pattern                          │
-│     - Material Design 3                     │
-│     - StateFlow                             │
-│              ↓                               │
-│  🔧 Business Layer                          │
-│     - ApiAuthManager                        │
-│     - ApiRepository                         │
-│              ↓                               │
-│  🌐 Network Layer                           │
-│     - Ktor HttpClient                       │
-│     - API Services                          │
-│              ↓                               │
-│  ⚙️ Service Layer                           │
-│     - PushListeningService                  │
-│     - PushCatcherService (SMS)              │
-└─────────────────────────────────────────────┘
-                ↓ HTTPS
-┌─────────────────────────────────────────────┐
-│  🖥️ Backend API (Express.js)                │
-│     - RESTful API                           │
-│     - TOTP Authentication                   │
-│     - Card Management                       │
-│     - Transaction Tracking                  │
-└─────────────────────────────────────────────┘
-                ↓
-┌─────────────────────────────────────────────┐
-│  🗄️ Database (Supabase/PostgreSQL)         │
-└─────────────────────────────────────────────┘
-            </div>
-
-            <div class="features-grid" style="margin-top: 3rem;">
-                <div class="glass-card">
-                    <h3 style="color: white; margin-bottom: 1rem;">UI 아키텍처</h3>
-                    <ul class="feature-list">
-                        <li>Jetpack Compose로 선언적 UI</li>
-                        <li>MVVM 패턴으로 깔끔한 구조</li>
-                        <li>StateFlow로 반응형 데이터</li>
-                        <li>Material Design 3 적용</li>
-                    </ul>
-                </div>
-                <div class="glass-card">
-                    <h3 style="color: white; margin-bottom: 1rem;">서비스 아키텍처</h3>
-                    <ul class="feature-list">
-                        <li>NotificationListener로 푸시 감지</li>
-                        <li>자동 파싱 및 데이터 전송</li>
-                        <li>SMS 자동 전송 서비스</li>
-                        <li>백그라운드 안정성 보장</li>
-                    </ul>
-                </div>
-                <div class="glass-card">
-                    <h3 style="color: white; margin-bottom: 1rem;">인증 시스템</h3>
-                    <ul class="feature-list">
-                        <li>이메일 화이트리스트 관리</li>
-                        <li>TOTP 2단계 인증</li>
-                        <li>신뢰된 기기 관리</li>
-                        <li>Magic Link 로그인</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Key Features Detail -->
-    <section id="details">
-        <div class="container">
-            <h2 class="section-title">핵심 기능 상세</h2>
-
-            <div class="glass-card" style="margin-bottom: 2rem;">
-                <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">🔔 푸시 알림 캐치</h3>
-                <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem; line-height: 1.8;">
-                    Android의 NotificationListenerService를 활용해서 카드사 앱의 푸시 알림을 실시간으로 감지합니다.
-                    알림이 오면 자동으로 파싱해서 카드사명, 카드명, 금액, 가맹점 정보를 추출하고, 백엔드 API로 전송해서 저장합니다.
-                </p>
-                <ul class="feature-list">
-                    <li>배터리 최적화를 고려한 효율적인 리스너 구현</li>
-                    <li>다양한 카드사 알림 포맷 지원 (정규식 기반)</li>
-                    <li>오프라인 시 로컬 저장 후 동기화</li>
-                    <li>중복 알림 자동 필터링</li>
-                </ul>
-            </div>
-
-            <div class="glass-card" style="margin-bottom: 2rem;">
-                <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">💳 카드 실적 관리</h3>
-                <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem; line-height: 1.8;">
-                    카드별로 목표 금액을 설정하면, 실시간으로 현재 달성률을 확인할 수 있습니다.
-                    푸시 알림으로 캐치된 거래뿐만 아니라, 수동으로도 실적을 추가할 수 있어요.
-                </p>
-                <ul class="feature-list">
-                    <li>현재 금액 / 목표 금액 한눈에 확인</li>
-                    <li>달성률 프로그레스 바로 시각화</li>
-                    <li>거래 횟수 및 평균 거래 금액 통계</li>
-                    <li>월별 자동 리셋 및 히스토리 관리</li>
-                </ul>
-            </div>
-
-            <div class="glass-card" style="margin-bottom: 2rem;">
-                <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">📨 SMS 자동 전송</h3>
-                <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem; line-height: 1.8;">
-                    카드 거래 알림을 자동으로 특정 번호로 SMS 전송할 수 있습니다.
-                    특정 앱만 선택해서 전송하거나, 전체 알림을 전송할 수 있고, 전송 내역도 확인 가능합니다.
-                </p>
-                <ul class="feature-list">
-                    <li>필터 설정으로 특정 앱만 선택 전송</li>
-                    <li>전송 실패 시 자동 재전송</li>
-                    <li>전송 내역 확인 및 관리</li>
-                    <li>포그라운드 서비스로 안정적 전송</li>
-                </ul>
-            </div>
-
-            <div class="glass-card">
-                <h3 style="color: white; font-size: 1.8rem; margin-bottom: 1.5rem;">🔐 TOTP 인증 시스템</h3>
-                <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem; line-height: 1.8;">
-                    구글 Authenticator 방식의 TOTP 2단계 인증으로 계정을 안전하게 보호합니다.
-                    신뢰된 기기로 등록하면 30일간 OTP 입력 없이 로그인할 수 있어요.
-                </p>
-                <ul class="feature-list">
-                    <li>이메일 화이트리스트로 가입 제한</li>
-                    <li>TOTP 6자리 코드 인증</li>
-                    <li>신뢰된 기기 관리 (30일 유효)</li>
-                    <li>Magic Link를 통한 이메일 인증</li>
-                </ul>
+                <!-- Add more projects here in the future -->
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" style="background: rgba(0,0,0,0.1);">
+    <section id="contact">
         <div class="container">
-            <h2 class="section-title">연락처</h2>
-            <div class="contact-info glass-card" style="max-width: 600px; margin: 0 auto;">
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                    프로젝트에 대해 궁금한 점이 있거나 문의 사항이 있으시면 언제든 연락주세요
-                </p>
-                <p style="margin-bottom: 1rem; font-size: 1.1rem;">
-                    <strong>GitHub:</strong> <a href="https://github.com/hwanyc-repository" target="_blank">github.com/hwanyc-repository</a>
-                </p>
-                <p style="margin-bottom: 1rem; font-size: 1.1rem;">
-                    <strong>Repository:</strong> <a href="https://github.com/hwanyc-repository/Push_catcher" target="_blank">Push_catcher</a>
-                </p>
-                <p style="margin-top: 2rem; color: rgba(255,255,255,0.8);">
-                    Made with ❤️ by hwanyc
-                </p>
+            <h2 class="section-title">Contact</h2>
+            <div class="glass-card contact-info">
+                <p>프로젝트 문의나 협업 제안이 있으시면 언제든 연락주세요</p>
+                <div class="contact-links">
+                    <a href="https://github.com/hwanyc-repository" class="contact-link" target="_blank">
+                        <span class="icon">🐙</span>
+                        <span>GitHub</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Push Catcher by hwanyc. All rights reserved.</p>
+        <p>&copy; 2025 hwanyc. All rights reserved.</p>
         <p style="margin-top: 0.5rem; color: rgba(255,255,255,0.7);">Hosted on Cloudflare Pages</p>
     </footer>
 
-    <script>
-        // Smooth scroll animation on load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Intersection Observer for fade-in animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            // Observe all glass cards
-            document.querySelectorAll('.glass-card, .feature-card, .stat-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-                observer.observe(card);
-            });
-
-            // Smooth scroll for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Hide scroll indicator after scroll
-            window.addEventListener('scroll', function() {
-                const scrollIndicator = document.querySelector('.scroll-indicator');
-                if (window.scrollY > 100) {
-                    scrollIndicator.style.opacity = '0';
-                } else {
-                    scrollIndicator.style.opacity = '1';
-                }
-            });
-
-            // Add parallax effect to hero
-            window.addEventListener('scroll', function() {
-                const hero = document.querySelector('.hero');
-                const scrolled = window.scrollY;
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                hero.style.opacity = 1 - (scrolled / 500);
-            });
-        });
-    </script>
+    <script src="js/main.js"></script>
 
 </body>
 </html>
