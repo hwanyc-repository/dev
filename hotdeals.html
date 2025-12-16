@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="실시간 핫딜 정보를 한눈에 확인하고 키워드 알림으로 놓치지 마세요!">
+    <meta name="keywords" content="핫딜, 할인, 쇼핑, 특가, 실시간">
+    <title>🔥 HotDeals - 실시간 핫딜 플랫폼</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2D2D2D;
+            background-color: #F7F7F7;
+        }
+
+        /* 컨테이너 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 헤더 */
+        header {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 15px;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #FF6B35;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* 섹션 공통 스타일 */
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #2D2D2D;
+        }
+
+        /* 주요 기능 섹션 */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-radius: 16px;
+            background: #F7F7F7;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #FF6B35;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* 스크린샷 섹션 */
+        .screenshots {
+            background: linear-gradient(to bottom, #F7F7F7 0%, white 100%);
+        }
+
+        .screenshots-container {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-behavior: smooth;
+        }
+
+        .screenshot-item {
+            flex: 0 0 280px;
+            text-align: center;
+        }
+
+        .screenshot-frame {
+            background: #2D2D2D;
+            border-radius: 30px;
+            padding: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .screenshot-frame:hover {
+            transform: scale(1.05);
+        }
+
+        .screenshot-img {
+            width: 100%;
+            height: 560px;
+            border-radius: 20px;
+            object-fit: cover;
+            background: #F0F0F0;
+            display: block;
+        }
+
+        .screenshot-img.placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .screenshot-caption {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* 기술 스택 섹션 */
+        .tech-stack {
+            background: white;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tech-category {
+            background: #F7F7F7;
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 4px solid #FF6B35;
+        }
+
+        .tech-category-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2D2D2D;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            background: white;
+            color: #004E89;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid #004E89;
+        }
+
+        /* 사용 방법 섹션 */
+        .how-to-use {
+            background: #F7F7F7;
+        }
+
+        .steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .step-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #2D2D2D;
+        }
+
+        .step-content p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* CTA 섹션 */
+        .cta-section {
+            background: linear-gradient(135deg, #004E89 0%, #006BB6 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-section .btn {
+            margin: 0 10px;
+        }
+
+        /* 푸터 */
+        footer {
+            background: #2D2D2D;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .cta-section h2 {
+                font-size: 32px;
+            }
+
+            .cta-section p {
+                font-size: 18px;
+            }
+        }
+
+        /* 스크롤바 스타일 */
+        .screenshots-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .screenshots-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .screenshots-container::-webkit-scrollbar-thumb {
+            background: #FF6B35;
+            border-radius: 10px;
+        }
+
+        .screenshots-container::-webkit-scrollbar-thumb:hover {
+            background: #FF8E53;
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="container">
+            <h1 class="hero-title">🔥 HotDeals</h1>
+            <p class="hero-subtitle">실시간 핫딜을 놓치지 마세요</p>
+            <p class="hero-description">
+                매일 업데이트되는 최신 핫딜 정보를 한눈에 확인하고<br>
+                원하는 키워드를 알림으로 받아보세요
+            </p>
+            <div class="cta-buttons">
+                <a href="#download" class="btn btn-primary">Google Play에서 다운로드</a>
+                <a href="#screenshots" class="btn btn-secondary">앱 미리보기</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 주요 기능 -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">💡 주요 기능</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">실시간 핫딜 정보</h3>
+                    <p class="feature-description">
+                        퀘이사존, 뽐뿌, 루리웹 등 주요 커뮤니티의 핫딜을
+                        실시간으로 수집하여 한곳에서 확인할 수 있습니다.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🏷️</div>
+                    <h3 class="feature-title">카테고리별 분류</h3>
+                    <p class="feature-description">
+                        전자제품, 패션, 식품, 생활용품 등
+                        원하는 카테고리만 골라서 볼 수 있습니다.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3 class="feature-title">키워드 알림</h3>
+                    <p class="feature-description">
+                        관심 키워드를 등록하면 해당 핫딜이 올라올 때
+                        푸시 알림으로 즉시 알려드립니다.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3 class="feature-title">오프라인 저장</h3>
+                    <p class="feature-description">
+                        마음에 드는 핫딜을 로컬에 저장하여
+                        인터넷 없이도 나중에 확인할 수 있습니다.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">스마트 검색</h3>
+                    <p class="feature-description">
+                        제목, 가격, 할인율 등 다양한 조건으로
+                        원하는 핫딜을 빠르게 찾을 수 있습니다.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Material Design 3</h3>
+                    <p class="feature-description">
+                        최신 머티리얼 디자인을 적용한
+                        직관적이고 세련된 사용자 경험을 제공합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 스크린샷 -->
+    <section class="screenshots" id="screenshots">
+        <div class="container">
+            <h2 class="section-title">📱 앱 미리보기</h2>
+            <div class="screenshots-container">
+                <div class="screenshot-item">
+                    <div class="screenshot-frame">
+                        <img src="images/hotdeals-screenshot-1.png" alt="핫딜 리스트" class="screenshot-img" onerror="this.className='screenshot-img placeholder'; this.alt=''; this.innerHTML='메인 화면';">
+                    </div>
+                    <p class="screenshot-caption">핫딜 리스트</p>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-frame">
+                        <img src="images/hotdeals-screenshot-2.png" alt="카테고리 필터" class="screenshot-img" onerror="this.className='screenshot-img placeholder'; this.alt=''; this.innerHTML='카테고리 화면';">
+                    </div>
+                    <p class="screenshot-caption">카테고리 필터</p>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-frame">
+                        <img src="images/hotdeals-screenshot-3.png" alt="스마트 검색" class="screenshot-img" onerror="this.className='screenshot-img placeholder'; this.alt=''; this.innerHTML='검색 화면';">
+                    </div>
+                    <p class="screenshot-caption">스마트 검색</p>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-frame">
+                        <img src="images/hotdeals-screenshot-4.png" alt="핫딜 상세 보기" class="screenshot-img" onerror="this.className='screenshot-img placeholder'; this.alt=''; this.innerHTML='상세 화면';">
+                    </div>
+                    <p class="screenshot-caption">핫딜 상세 보기</p>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-frame">
+                        <img src="images/hotdeals-screenshot-5.png" alt="키워드 알림 설정" class="screenshot-img" onerror="this.className='screenshot-img placeholder'; this.alt=''; this.innerHTML='알림 설정';">
+                    </div>
+                    <p class="screenshot-caption">키워드 알림 설정</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 사용 방법 -->
+    <section class="how-to-use">
+        <div class="container">
+            <h2 class="section-title">📝 사용 방법</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>앱 설치 및 실행</h3>
+                        <p>Google Play에서 HotDeals를 다운로드하고 실행하세요.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>카테고리 선택</h3>
+                        <p>관심 있는 카테고리를 선택하여 핫딜을 필터링하세요.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>키워드 알림 설정</h3>
+                        <p>원하는 상품 키워드를 등록하면 새 핫딜 알림을 받을 수 있습니다.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>핫딜 확인 및 구매</h3>
+                        <p>마음에 드는 핫딜을 클릭하여 상세 정보를 확인하고 구매하세요.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 기술 스택 -->
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">🛠️ 기술 스택</h2>
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Android</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Kotlin 2.1.0</span>
+                        <span class="tech-tag">Jetpack Compose</span>
+                        <span class="tech-tag">Material Design 3</span>
+                        <span class="tech-tag">MVVM</span>
+                        <span class="tech-tag">Hilt</span>
+                        <span class="tech-tag">Room</span>
+                        <span class="tech-tag">Retrofit</span>
+                        <span class="tech-tag">Coil</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Backend</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Next.js 14</span>
+                        <span class="tech-tag">TypeScript 5.3</span>
+                        <span class="tech-tag">MongoDB Atlas</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Vercel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="download">
+        <div class="container">
+            <h2>📲 지금 바로 시작하세요</h2>
+            <p>
+                HotDeals와 함께 놓치지 말아야 할 핫딜을<br>
+                실시간으로 확인하세요
+            </p>
+            <div class="cta-buttons">
+                <a href="https://play.google.com/store" class="btn btn-primary" target="_blank">
+                    Google Play에서 다운로드
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    GitHub에서 소스코드 보기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 HotDeals. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#privacy">개인정보처리방침</a>
+                <a href="#terms">이용약관</a>
+                <a href="#" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
